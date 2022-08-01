@@ -8,6 +8,6 @@ public class KakaosecurityApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(KakaosecurityApplication.class, args);
-	}
+	} 
 
 }
