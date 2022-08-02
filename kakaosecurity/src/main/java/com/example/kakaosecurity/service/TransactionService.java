@@ -8,6 +8,12 @@ import org.springframework.stereotype.Service;
 import com.example.kakaosecurity.domain.Transaction;
 import com.example.kakaosecurity.repository.TransactionRepository;
 
+
+/**
+ * 거래정보 service
+ * @author jungwoo
+ *
+ */
 @Service
 public class TransactionService {
 	

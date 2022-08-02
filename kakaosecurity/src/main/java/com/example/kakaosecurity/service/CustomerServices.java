@@ -9,6 +9,12 @@ import org.springframework.stereotype.Service;
 import com.example.kakaosecurity.domain.Customer;
 import com.example.kakaosecurity.repository.CustomerRepository;
 
+
+/**
+ * 고객 service
+ * @author jungwoo
+ *
+ */
 @Service
 public class CustomerServices {
 	

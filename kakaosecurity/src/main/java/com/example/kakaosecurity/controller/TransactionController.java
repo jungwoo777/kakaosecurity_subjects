@@ -16,6 +16,12 @@ import com.example.kakaosecurity.service.TransactionService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+
+/**
+ * 거래정보 컨트롤러
+ * @author jungwoo
+ *
+ */
 @RestController
 @Tag(name = "transaction-거래", description = "거래 관련 API")
 public class TransactionController {
@@ -25,6 +31,12 @@ public class TransactionController {
 		this.transactionService = transactionService;
 	}
 	
+	
+	/**
+	 * 거래 신규
+	 * @param transactionForm
+	 * @return
+	 */
 	@PostMapping("/transaction/new")
 	public ResponseEntity<?> createNewCustomer(TransactionForm transactionForm){
 		Map<String, Object> response = new HashMap<>();
@@ -43,6 +55,11 @@ public class TransactionController {
         return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
+	
+	/**
+	 * 모든 거래 조회
+	 * @return
+	 */
 	@GetMapping("/transaction/all")
     public ResponseEntity<?> readAll() {
 		Map<String, Object> response = new HashMap<>();

@@ -2,6 +2,12 @@ package com.example.kakaosecurity.domain;
 
 import java.math.BigDecimal;
 
+
+/**
+ * 계좌별 총예치금 객체
+ * @author jungwoo
+ *
+ */
 public class BalanceByAccountWithCustomer {
 	
 	private int customerId;

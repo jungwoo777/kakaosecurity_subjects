@@ -2,6 +2,12 @@ package com.example.kakaosecurity.domain;
 
 import java.math.BigDecimal;
 
+
+/**
+ * 기간별 총예치금 객체
+ * @author jungwoo
+ *
+ */
 public class TotalBalViaPeriodByCustomer {
 	
 	private int customerId;

@@ -21,6 +21,11 @@ import com.example.kakaosecurity.service.CustomerServices;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+/**
+ * 계좌 - 컨트롤러
+ * @author jungwoo
+ *
+ */
 @RestController
 @Tag(name = "account-계좌", description = "계좌관련 API")
 public class AccountController {
@@ -33,6 +38,11 @@ public class AccountController {
 		this.customerService = customerService; 
 	}
 	
+	/**
+	 * 계좌 신규
+	 * @param accountForm
+	 * @return
+	 */
 	@PostMapping("/account/new")
 	public ResponseEntity<?>  createNewAccount(AccountForm accountForm) {
 		Map<String, Object> response = new HashMap<>();
@@ -55,6 +65,11 @@ public class AccountController {
 		
 	}
 	
+	
+	/**
+	 * 전체계좌 조회
+	 * @return
+	 */
 	@GetMapping("/account/all")
     public ResponseEntity<?> readAll() {
 		Map<String, Object> response = new HashMap<>();
@@ -69,6 +84,12 @@ public class AccountController {
 
     }
 
+	
+	/**
+	 * 계좌 한건 조회
+	 * @param accountNo : 계좌번호
+	 * @return
+	 */
     @GetMapping("/account/{accountNo}")
     public ResponseEntity<?> readAll(@PathVariable("accountNo - 계좌번호") String accountNo) {
         Optional<Account> account = accountService.findAccountByAccountNo(accountNo);

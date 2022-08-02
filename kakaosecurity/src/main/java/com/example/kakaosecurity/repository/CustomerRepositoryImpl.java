@@ -14,6 +14,12 @@ import org.springframework.stereotype.Repository;
 import com.example.kakaosecurity.domain.Customer;
 import com.example.kakaosecurity.domain.CustomerRowMapper;
 
+
+/**
+ * 고객 repository
+ * @author jungwoo
+ *
+ */
 @Repository
 public class CustomerRepositoryImpl implements CustomerRepository {
 	

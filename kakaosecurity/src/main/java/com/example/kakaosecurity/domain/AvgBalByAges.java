@@ -1,5 +1,11 @@
 package com.example.kakaosecurity.domain;
 
+
+/**
+ * 나이대별 평균예치금 객체
+ * @author jungwoo
+ *
+ */
 public class AvgBalByAges {
 	
 	private int ages;

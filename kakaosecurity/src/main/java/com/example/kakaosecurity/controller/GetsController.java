@@ -25,6 +25,12 @@ import com.example.kakaosecurity.service.GetsService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+
+/**
+ * 추가API에 대한 컨트롤러
+ * @author jungwoo
+ *
+ */
 @RestController
 @Tag(name = "gets-추가조회", description = "기타 추가 조회 API")
 @RequestMapping("/gets")
@@ -39,6 +45,13 @@ public class GetsController {
 		this.customerService = customerService;
 	}
 
+	
+	/**
+	 * 추가 1번
+	 * 사용자의 계좌별 예치금 조회
+	 * @param customerId
+	 * @return
+	 */
 	@GetMapping("/getBalanceByAccountWithCustomer/customerId/{customerId}")
     public ResponseEntity<?> findBalanceByAccountWithCustomer(@PathVariable("customerId - 고객ID") int customerId) {
 		Map<String, Object> response = new HashMap<>();
@@ -54,6 +67,12 @@ public class GetsController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 	
+	
+	/**
+	 * 추가 2번 
+	 * 사용자 나이대 별로, 평균 예치금을 출력
+	 * @return
+	 */
 	@GetMapping("/getAvgBalByAges")
 	public ResponseEntity<?> findAvgBalByAges() {
 		List<AvgBalByAges> list = getsService.findAvgBalByAges();
@@ -66,6 +85,13 @@ public class GetsController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
+	
+	/**
+	 * 추가 3번
+	 * 년도를 입력받아, 해당년도의 예치금 총액을 출력
+	 * @param year
+	 * @return
+	 */
 	@GetMapping("/getTotalBalForYear/year/{year}")
 	public ResponseEntity<?> findTotalBalForYear(@PathVariable("year - 조회년도") int year) {
 		Map<String, Object> response = new HashMap<>();
@@ -83,6 +109,14 @@ public class GetsController {
 	}
 	
 	
+	
+	/**
+	 * 추가 4번
+	 * 기간을 입력받아, 돈을 많이 예치한 사용자 순으로 정렬해서 출력
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 */
 	@GetMapping("/getTotalBalForCustomerBetweenDate/startDate/{startDate}/endDate/{endDate}")
 	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	public ResponseEntity<?> findTotalBalForYear(@PathVariable("startDate - 조회시작일자") String startDate, @PathVariable("endDate - 조회 종료일자") String endDate) {

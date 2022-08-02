@@ -10,6 +10,12 @@ import com.example.kakaosecurity.domain.TotalBalForYear;
 import com.example.kakaosecurity.domain.TotalBalViaPeriodByCustomer;
 import com.example.kakaosecurity.repository.GetsRepository;
 
+
+/**
+ * 추가질문 service
+ * @author jungwoo
+ *
+ */
 @Service
 public class GetsService {
 	

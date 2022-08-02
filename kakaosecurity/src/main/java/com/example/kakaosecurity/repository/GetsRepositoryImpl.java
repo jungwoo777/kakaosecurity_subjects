@@ -15,6 +15,12 @@ import com.example.kakaosecurity.domain.TotalBalViaPeriodByCustomer;
 import com.example.kakaosecurity.domain.TotalBalViaPeriodByCustomerRowMapper;
 import com.example.kakaosecurity.domain.TotalBalanceForYearRowMapper;
 
+
+/**
+ * 추가질문 repository
+ * @author jungwoo
+ *
+ */
 @Repository
 public class GetsRepositoryImpl implements GetsRepository{
 	

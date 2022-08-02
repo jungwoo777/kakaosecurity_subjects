@@ -22,6 +22,11 @@ import com.example.kakaosecurity.service.CustomerServices;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+/**
+ * 고객 컨트롤러
+ * @author jungwoo
+ *
+ */
 @RestController
 @Tag(name = "customer-고객", description = "고객 관련 API")
 public class CustomerController {
@@ -32,6 +37,12 @@ public class CustomerController {
 		this.customerServices = customerServices;
 	}
 	
+	
+	/**
+	 * 고객 신규
+	 * @param customerForm
+	 * @return
+	 */
 	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	@PostMapping("/customer/new")
 	public ResponseEntity<?> createNewCustomer(CustomerForm customerForm){
@@ -55,6 +66,11 @@ public class CustomerController {
         return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
+	
+	/**
+	 * 전체 고객 목록 조회
+	 * @return
+	 */
 	@GetMapping("/customer/all")
     public ResponseEntity<?> readAll() {
         List<Customer> customers = customerServices.findAllCustomers();
@@ -66,6 +82,12 @@ public class CustomerController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+	
+	/**
+	 * 고객 한명 조회
+	 * @param customerId
+	 * @return
+	 */
     @GetMapping("/customer/{customerId}")
     public ResponseEntity<?> readAll(@PathVariable("customerId-고객ID") int customerId) {
     	Map<String, Object> response = new HashMap<>();

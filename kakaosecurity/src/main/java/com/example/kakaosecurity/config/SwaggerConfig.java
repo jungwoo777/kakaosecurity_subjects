@@ -7,6 +7,11 @@ import org.springframework.context.annotation.Configuration;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 
+/**
+ * 스웨거 설정
+ * @author jungwoo
+ *
+ */
 @Configuration
 public class SwaggerConfig {
 	
@@ -23,7 +28,7 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .info(new Info().title("KAKAO SECURITY TEST API")
                         .description("카카오페이증권 과제 API 명세서입니다.")
-                        .version("v0.0.1"));
+                        .version("v1.0.0"));
     }
 
 }

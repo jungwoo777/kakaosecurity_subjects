@@ -14,6 +14,12 @@ import com.example.kakaosecurity.domain.Account;
 import com.example.kakaosecurity.domain.AccountRowMapper;
 import com.example.kakaosecurity.domain.Customer;
 
+
+/**
+ * 계좌 repository
+ * @author jungwoo
+ *
+ */
 @Repository
 public class AccountRepositoryImpl implements AccountRepository{
 	

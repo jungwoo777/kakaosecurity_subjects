@@ -13,6 +13,12 @@ import org.springframework.stereotype.Repository;
 import com.example.kakaosecurity.domain.Transaction;
 import com.example.kakaosecurity.domain.TransactionRowMapper;
 
+
+/**
+ * 거래정보 repository
+ * @author jungwoo
+ *
+ */
 @Repository
 public class TransactionRepositoryImpl implements TransactionRepository{
 	

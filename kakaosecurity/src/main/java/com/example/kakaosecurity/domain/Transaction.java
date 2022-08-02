@@ -4,6 +4,12 @@ import java.math.BigDecimal;
 
 import lombok.Data;
 
+
+/**
+ * 거래정보 객체
+ * @author jungwoo
+ *
+ */
 @Data
 public class Transaction {
 	

@@ -2,6 +2,11 @@ package com.example.kakaosecurity.domain;
 
 import lombok.Data;
 
+/**
+ * 계좌 객체
+ * @author jungwoo
+ *
+ */
 @Data
 public class Account {
 	
