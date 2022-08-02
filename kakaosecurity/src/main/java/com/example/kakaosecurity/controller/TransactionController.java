@@ -14,6 +14,7 @@ import com.example.kakaosecurity.domain.Transaction;
 import com.example.kakaosecurity.form.TransactionForm;
 import com.example.kakaosecurity.service.TransactionService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 
@@ -38,6 +39,7 @@ public class TransactionController {
 	 * @return
 	 */
 	@PostMapping("/transaction/new")
+	@Operation(summary="거래정보 신규 등록", description="거래정보를 입력받아 거래내역을 신규로 등록한다.")
 	public ResponseEntity<?> createNewCustomer(TransactionForm transactionForm){
 		Map<String, Object> response = new HashMap<>();
 		
@@ -61,6 +63,7 @@ public class TransactionController {
 	 * @return
 	 */
 	@GetMapping("/transaction/all")
+	@Operation(summary="모든 거래 조회", description="관리하는 모든 거래를 조회한다.")
     public ResponseEntity<?> readAll() {
 		Map<String, Object> response = new HashMap<>();
 		

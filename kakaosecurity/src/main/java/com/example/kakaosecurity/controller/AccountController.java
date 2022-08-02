@@ -19,6 +19,7 @@ import com.example.kakaosecurity.response.ApiErrorException;
 import com.example.kakaosecurity.service.AccountService;
 import com.example.kakaosecurity.service.CustomerServices;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 /**
@@ -44,6 +45,7 @@ public class AccountController {
 	 * @return
 	 */
 	@PostMapping("/account/new")
+	@Operation(summary="계좌 신규 등록", description="계좌정보를 입력받아 신규 계좌를 등록한다")
 	public ResponseEntity<?>  createNewAccount(AccountForm accountForm) {
 		Map<String, Object> response = new HashMap<>();
 		
@@ -71,6 +73,7 @@ public class AccountController {
 	 * @return
 	 */
 	@GetMapping("/account/all")
+	@Operation(summary="전체 계좌 조회", description="관리하고 있는 모든 계좌를 조회한다.")
     public ResponseEntity<?> readAll() {
 		Map<String, Object> response = new HashMap<>();
 		
@@ -91,6 +94,7 @@ public class AccountController {
 	 * @return
 	 */
     @GetMapping("/account/{accountNo}")
+    @Operation(summary="계좌 한건 조회", description="계좌번호를 입력받아 계좌 한건을 조회한다.")
     public ResponseEntity<?> readAll(@PathVariable("accountNo - 계좌번호") String accountNo) {
         Optional<Account> account = accountService.findAccountByAccountNo(accountNo);
 

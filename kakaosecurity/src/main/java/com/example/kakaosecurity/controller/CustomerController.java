@@ -20,6 +20,7 @@ import com.example.kakaosecurity.response.ApiErrorException;
 import com.example.kakaosecurity.service.AccountService;
 import com.example.kakaosecurity.service.CustomerServices;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 /**
@@ -45,6 +46,7 @@ public class CustomerController {
 	 */
 	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	@PostMapping("/customer/new")
+	@Operation(summary="고객 신규 등록", description="고객정보를 입력받아 신규고객을 등록한다.")
 	public ResponseEntity<?> createNewCustomer(CustomerForm customerForm){
 		Map<String, Object> response = new HashMap<>();
 		
@@ -72,6 +74,7 @@ public class CustomerController {
 	 * @return
 	 */
 	@GetMapping("/customer/all")
+	@Operation(summary="전체 고객 조회", description="관리하고 있는 모든 고객을 조회한다.")
     public ResponseEntity<?> readAll() {
         List<Customer> customers = customerServices.findAllCustomers();
 
@@ -89,6 +92,7 @@ public class CustomerController {
 	 * @return
 	 */
     @GetMapping("/customer/{customerId}")
+    @Operation(summary="고객 한건 조회", description="고객ID를 입력받아 고객 한명의 정보를 조회한다.")
     public ResponseEntity<?> readAll(@PathVariable("customerId-고객ID") int customerId) {
     	Map<String, Object> response = new HashMap<>();
     	
