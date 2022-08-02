@@ -11,22 +11,26 @@ import com.example.kakaosecurity.domain.AvgBalByAgesRowMapper;
 import com.example.kakaosecurity.domain.BalanceByAccountWithCustomer;
 import com.example.kakaosecurity.domain.BalanceByAccountWithCustomerRowMapper;
 import com.example.kakaosecurity.domain.TotalBalForYear;
+import com.example.kakaosecurity.domain.TotalBalViaPeriodByCustomer;
+import com.example.kakaosecurity.domain.TotalBalViaPeriodByCustomerRowMapper;
 import com.example.kakaosecurity.domain.TotalBalanceForYearRowMapper;
 
 @Repository
-public class PostsRepositoryImpl implements PostsRepository{
+public class GetsRepositoryImpl implements GetsRepository{
 	
 	private final JdbcTemplate jdbcTemplate;
 	private final BalanceByAccountWithCustomerRowMapper blanceByAccountWithCustomerRowMapper;
 	private final AvgBalByAgesRowMapper avgBalByAgesRowMapper;
 	private final TotalBalanceForYearRowMapper totalBalanceForYearRowMapper;
+	private final TotalBalViaPeriodByCustomerRowMapper totalBalViaPeriodByCustomerRowMapper;
 	
 	@Autowired
-	public PostsRepositoryImpl(JdbcTemplate jdbcTemplate) {
+	public GetsRepositoryImpl(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 		this.blanceByAccountWithCustomerRowMapper = new BalanceByAccountWithCustomerRowMapper();
 		this.avgBalByAgesRowMapper = new AvgBalByAgesRowMapper();
 		this.totalBalanceForYearRowMapper = new TotalBalanceForYearRowMapper();
+		this.totalBalViaPeriodByCustomerRowMapper = new TotalBalViaPeriodByCustomerRowMapper();
 	}
 
 	@Override
@@ -93,6 +97,29 @@ public class PostsRepositoryImpl implements PostsRepository{
 				+ "where tt1.YYYY = ?"
 				, totalBalanceForYearRowMapper
 				, year);
+		return result;
+	}
+
+	@Override
+	public List<TotalBalViaPeriodByCustomer> findTotalBalViaPeriodByCustomer(String startDate, String endDate) {
+		List<TotalBalViaPeriodByCustomer> result = jdbcTemplate.query(
+				"select\r\n"
+				+ "customer_id, max(name) as name, sum(ammount) as total_balance\r\n"
+				+ "from(select t1.customer_id as customer_id,\r\n"
+				+ "            t1.name as name,\r\n"
+				+ "            t3.trans_date as trans_date,\r\n"
+				+ "            case when t3.transfer_yn = 'Y' then ammount\r\n"
+				+ "                 else -1*t3.ammount end ammount\r\n"
+				+ "      from customer t1, account t2, transaction t3\r\n"
+				+ "     where t1.customer_id = t2.customer_id\r\n"
+				+ "       and t2.account_no = t3.account_no\r\n"
+				+ ") tt1\r\n"
+				+ "where TO_CHAR(tt1.trans_Date, 'YYYYMMDD') between ? and ?\r\n"
+				+ "group by customer_id\r\n"
+				+ "order by total_balance desc"
+				, totalBalViaPeriodByCustomerRowMapper
+				, startDate
+				, endDate);
 		return result;
 	}
 
