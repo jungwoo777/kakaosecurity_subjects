@@ -55,13 +55,16 @@ public class GetsController {
 	 */
 	@GetMapping("/getBalanceByAccountWithCustomer/customerId/{customerId}")
 	@Operation(summary="사용자의 계좌별 예치금 조회", description="고객ID를 입력받아 해당 사용자의 계좌별 예치금을 조회한다.")
-    public ResponseEntity<?> findBalanceByAccountWithCustomer(@PathVariable("customerId - 고객ID") int customerId) {
+    public ResponseEntity<?> findBalanceByAccountWithCustomer(String customerId) {
 		Map<String, Object> response = new HashMap<>();
-		if(customerService.findCustomerById(customerId).isEmpty()) {
+		
+		int customerIdValue = Integer.parseInt(customerId);
+		
+		if(customerService.findCustomerById(customerIdValue).isEmpty()) {
 			throw new ApiErrorException(ApiErrorEnum.INSERT_ERROR_CUSTOMER);
 		}
 		
-        List<BalanceByAccountWithCustomer> list = getsService.findBalanceByAccountWithCustomer(customerId);
+        List<BalanceByAccountWithCustomer> list = getsService.findBalanceByAccountWithCustomer(customerIdValue);
         
         response.put("message", "Success");
         response.put("BalanceByAccountWithCustomer", list);
@@ -97,10 +100,12 @@ public class GetsController {
 	 */
 	@GetMapping("/getTotalBalForYear/year/{year}")
 	@Operation(summary="년도를 입력받아 해당년도의 예치금 총액을 출력", description="조회 대상 년도를 입력받아 해당년도의 예치긤 총액을 조회한다.")
-	public ResponseEntity<?> findTotalBalForYear(@PathVariable("year - 조회년도") int year) {
+	public ResponseEntity<?> findTotalBalForYear(String year) {
 		Map<String, Object> response = new HashMap<>();
 		
-		List<TotalBalForYear> list = getsService.findTotalBalForYear(year);
+		int yearValue = Integer.parseInt(year);
+		
+		List<TotalBalForYear> list = getsService.findTotalBalForYear(yearValue);
 		
 		
 		if(list.isEmpty()) { 
@@ -124,7 +129,7 @@ public class GetsController {
 	@GetMapping("/getTotalBalForCustomerBetweenDate/startDate/{startDate}/endDate/{endDate}")
 	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	@Operation(summary="기간을 입력받아 돈을 많이 예치한 사용자 순으로 정렬하여 출력", description="기간(yyyy-mm-dd)을 입력받아 해당 기간동안 돈을 많이 예치한 사용자 순으로 조회한다.")
-	public ResponseEntity<?> findTotalBalForYear(@PathVariable("startDate - 조회시작일자") String startDate, @PathVariable("endDate - 조회 종료일자") String endDate) {
+	public ResponseEntity<?> findTotalBalForYear(String startDate, String endDate) {
 		Map<String, Object> response = new HashMap<>();
 		
 		if(!checkDate(startDate) || !checkDate(endDate)) {

@@ -17,7 +17,6 @@ import com.example.kakaosecurity.domain.Customer;
 import com.example.kakaosecurity.form.CustomerForm;
 import com.example.kakaosecurity.response.ApiErrorEnum;
 import com.example.kakaosecurity.response.ApiErrorException;
-import com.example.kakaosecurity.service.AccountService;
 import com.example.kakaosecurity.service.CustomerServices;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -93,10 +92,12 @@ public class CustomerController {
 	 */
     @GetMapping("/customer/{customerId}")
     @Operation(summary="고객 한건 조회", description="고객ID를 입력받아 고객 한명의 정보를 조회한다.")
-    public ResponseEntity<?> readAll(@PathVariable("customerId-고객ID") int customerId) {
+    public ResponseEntity<?> readAll(String customerId) {
     	Map<String, Object> response = new HashMap<>();
     	
-        Optional<Customer> customer = customerServices.findCustomerById(customerId);
+    	int customerIdValue = Integer.parseInt(customerId);
+    	
+        Optional<Customer> customer = customerServices.findCustomerById(customerIdValue);
 
 
         if(!customer.isPresent()) {

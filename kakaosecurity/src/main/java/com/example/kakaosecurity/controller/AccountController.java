@@ -95,7 +95,7 @@ public class AccountController {
 	 */
     @GetMapping("/account/{accountNo}")
     @Operation(summary="계좌 한건 조회", description="계좌번호를 입력받아 계좌 한건을 조회한다.")
-    public ResponseEntity<?> readAll(@PathVariable("accountNo - 계좌번호") String accountNo) {
+    public ResponseEntity<?> readAll(String accountNo) {
         Optional<Account> account = accountService.findAccountByAccountNo(accountNo);
 
         Map<String, Object> response = new HashMap<>();
